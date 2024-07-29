@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>berti92 brain dump</title>
+  <link rel="stylesheet" href="/assets/css/mvp.css">
+  <script async defer data-website-id="a1936807-662b-4f32-9775-4fa0ed7c797c"
+    src="https://umami.devbert.de/jquery-helper.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <h1>Bertis brain dump</h1>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a target="_blank" href="https://github.com/berti92">GitHub ↗</a></li>
+        <li><a target="_blank" href="https://mastodon.social/@DevBird">Mastodon ↗</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1>Solving the network conflict of Google wifi and Fritz!Box</h1>
+    <h2>... or the network conflict if you use google wifi and an internet Router</h2>
+    <small>2024-07-29 13:44 CEST</small>
+    <p>
+      If you not have already bought Google Wifi <big>STOP DON'T DO IT!</big>.
+      If you already have, welcome to this mess!
+    </p>
+    <p>The problem: I have a Fritz!Box 7590 as router and modem, everything is and was fine for many years. My wife and I bought
+      a house and the Fritz!Box couldn't provide a reliable WiFi-Connection in the complete house.
+    </p>
+    <p>
+      AVM provide a solution for that by offering a few AccessPoints, but every AP from AVM is a wallplug or
+      a device which is not mountable on the wall. We have in the ground and upper floor a LAN cable coming out the wall which provides a connection to the Fritz!Box and gets power via POE.
+      So therefore the AVM APs would look ugly. I bought Google WiFi because they had adapters for POE and would look good on the wall with a wall mount
+      and some colleagues recommended me the APs.
+    </p>
+    <p>
+      Oh boy, I should had read more into it, because we now have a real mess.
+    </p>
+    <p>
+      I installed everything and everything was right for a few weeks, until I needed to print something.
+      My epson app on my smartphone couldn't find the printer. It wasn't much of a problem. Simply typing in the IP address, click on connect and the printer was setup. No big deal.
+    </p>
+    <p>The real problem comes, when I needed to access my phone from my computer... I could reach from my phone (via wifi 192.168.86.0/24) my pc (via ethernet 192.168.178.0/24) but not the other way around.</p>
+    <p>They are many threads on forums or posts on reddit and so on about this problem. But nearly all of them are suggesting to buy other APs. Which is... a valid point. But you can fix it easily, if you already have
+      an raspberry pi or a device which is permanently running and can connect via ethernet AND WiFi.</p>
+    <p>Enough of the intro, as follows I explain how you setup your raspberry to forward traffic from the ethernet network to the wifi network, to solve the issue.</p>
+    <p>Log into to your raspberry pi via SSH, make sure, that you plugged in the lan cable and connect your raspberry pi to wifi. After it, you should have to network interfaces (probably more) eth0 for the ethernet and wlan0 for wifi. Execute the following commands on your raspberry pi:</p>
+    <pre>
+      <code>
+        sudo sysctl net.ipv4.ip_forward=1
+        sudo iptables -A FORWARD -i eth0 -o wlan0 -s 192.168.178.0/24 -d 192.168.86.0/24 -j ACCEPT
+        sudo iptables -A FORWARD -i wlan0 -o eth0 -s 192.168.86.0/24 -d 192.168.178.0/24 -m state --state ESTABLISHED,RELATED -j ACCEPT
+        sudo iptables -t nat -A POSTROUTING -s 192.168.178.0/24 -o wlan0 -j MASQUERADE
+      </code>
+    </pre>
+    <p>We need to add now a new route, so that every device in the fritzbox networks uses the raspberry pi as gateway to connect to the Google wifi network:</p>
+    <ul>
+      <li>Log in to the webinterface of the fritzbox <a href="http://192.168.178.1">http://192.168.178.1</a></li>
+      <li>My interface is in german, but I try to translate it into english. Click in the sidebar on homenetwork, than network.</li>
+      <li>Click on the tab network settings.</li>
+      <li>Scroll down to the bottom of the page and click on IPV4-Routes.</li>
+      <li>Click on new IPV4-Route.</li>
+      <li>Create a new route with the following settings:
+        <ul>
+          <li>IPV4-Network: 192.168.86.0</li>
+          <li>Subnetmask: 255.255.255.0</li>
+          <li>Gateway: 192.168.178.X
+            <b>Insert here the IP of the raspberry in your fritzbox network.</b>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <p>Now every thing is setup. You can now access every device in your google wifi network and fritzbox network from every device.</p>
+  </main>
+  <footer>
+    <hr>
+    <p>Made by <a target="_blank" href="https://www.devbert.de">Andreas Treubert ↗</a></p>
+  </footer>
+</body>
+
+</html>
