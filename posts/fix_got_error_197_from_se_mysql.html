@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>berti92 brain dump</title>
+  <link rel="stylesheet" href="/assets/css/mvp.css">
+  <script async defer data-website-id="a1936807-662b-4f32-9775-4fa0ed7c797c"
+    src="https://umami.devbert.de/jquery-helper.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <h1>Bertis brain dump</h1>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a target="_blank" href="https://github.com/berti92">GitHub ↗</a></li>
+        <li><a target="_blank" href="https://mastodon.social/@DevBird">Mastodon ↗</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1>Fix "[ERROR] [MY-011006] [Server] Got error 197 from SE while migrating tablespaces." on MySQL upgrade</h1>
+    <small>2024-08-13 09:51 CEST</small>
+    <p>
+      Maybe you get the error <code>[ERROR] [MY-011006] [Server] Got error 197 from SE while migrating tablespaces.</code> if you upgrade your
+      MySQL-Server from 5.7 to 8.0. Here is how you fix this error.
+    </p>
+    <p>Short background: You get this error if you manually deleted a database within the MySQL data folder via cli. This means the database still exists in the information_schema but not as folder on the filesystem.</p>
+    <p>
+      Solution 1: You should see other error messages before the <code>error 197</code> in the logs. In my case the following:<br>
+      <code>2024-08-06T19:06:25.465334Z 1 [ERROR] [MY-012216] [InnoDB] Cannot open datafile for read-only: './t_test/target.ibd'
+      OS error: 71</code>.
+      We can see, that the database can not open the table file "target" on the database "t_test". So now the solution is very simple:
+      <ul>
+        <li>We go into the mysql data folder <code>cd /var/lib/mysql</code></li>
+        <li>We create the missing folder t_test (thats the missing database folder on the filesystem, replace with your missing database folder) <code>mkdir t_test</code></li>
+        <li>Give it the right permission <code>chown -R mysql:mysql t_test</code></li>
+        <li>Now open a connection to the mysql database and now drop the database via sql <code>drop database t_test;</code></li>
+      </ul>
+      <p>Now the information_schema is cleaned up and you should be able to upgrade your server.</p>
+    </p>
+    <p>Solution 2: See <a href="https://bugs.mysql.com/bug.php?id=97295">https://bugs.mysql.com/bug.php?id=97295</a>. Dump the database. Delete the whole database and setup the new MySQL database with the new version and import the dump.</p>
+  </main>
+  <footer>
+    <hr>
+    <p>Made by <a target="_blank" href="https://www.devbert.de">Andreas Treubert ↗</a></p>
+  </footer>
+</body>
+
+</html>
