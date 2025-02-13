@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>berti92 brain dump</title>
+  <link rel="stylesheet" href="/assets/css/mvp.css">
+  <script async defer data-website-id="a1936807-662b-4f32-9775-4fa0ed7c797c"
+    src="https://umami.devbert.de/jquery-helper.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <h1>Bertis brain dump</h1>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a target="_blank" href="https://github.com/berti92">GitHub ↗</a></li>
+        <li><a target="_blank" href="https://mastodon.social/@DevBird">Mastodon ↗</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1>MySQL client is GPL licensed?!</h1>
+    <small>2025-02-13 17:51 CEST</small>
+    <p>Currently a customer wants to sell a big part of his company to investors. Therefore he asked me if I can help him with the whole selling process including the license check.</p>
+    <p>
+    The potential investors comissioned another company which checks the complete codebase for license issues.
+    The codebase is a REALLY old codebase, it exists since 2008 and it's a Rails 2, Ruby 1.8.7 application. Yes, in 2025! 
+    </p>
+    <p>Now we got the results and I'm a bit flabbergasted. All the years as developer I always ignored the license topic. I mean sure, I checked the dependencies if they are GPL or in general if I'm allowed to use it. But I never really thought about the licenses at all.</p>
+    <p>Things I learned after getting the result of the license check:</p>
+    
+    <h2>GPL intoxication is a thing</h2>
+    <p>If you buy a company you want to minimize the risk. This means the product of the company - the software - should be in a working, maintainable and well documented state. AND you should be allowed to use the dependencies. E.g. if a dependency is under GPL licensed, means that you have a GPL intoxication, which results in to release your code to the public, so now you have an open source product - even if you don't want it. </p>
+    
+    <h2>Save your dependencies - NOW!</h2>
+    <p>As mentioned above the software of my customer is very old, this means dependencies are sometimes so old, that the source code isn't hosted on GitHub anymore. Thats a problem, because maybe you don't have the complete repository of it, which includes license notes. So therefore, fork or download the complete repository of the dependency, to be able to proof the license of the dependency.</p>
+    
+    <h2>Docker and Linux-Derivates</h2>
+    <p>We deploy the rails app within a docker image which builds on top of a standard ubuntu image. The standard ubuntu image comes pre installed with a lot of packages, which we are using and which we are not using. To be safe regarding license issues, you need to provide the source code of every package which is installed in Ubuntu to the user. So that the user is able to read the source code of every used open source software. Thats pretty easy with a package manager. E.g. with apt you are able to get a list of every installed oss software and with that list you are able to build a package with the source code of the installed software.</p>
+    
+    <h2>We are not allowed to use MySQL?!</h2>
+    <p>Okay, that was a really big light bulb moment for me. The result stated that we are using the mysql-client-lib and thats licensed under the GPL. My thought immediatly was: "That couldn't be right. Everybody is using MySQL.". So we scheduled a call, and I asked my question. "Are we really not allowed to use the mysql-client?"
+    The employee of the license check company, answered it in a few words. "Do you really want to fight against Oracle? Buying a company is all about risk management. And GPL + Oracle is a huge risk for an investor." So therefore the employee, suggested to remove the mysql-client and replace it with mariadb, and if we are already on the topic, we should move the databases to mariadb, too. Now I know, why no one on HN talks about MySQL^^</p>
+    
+    <p>The last point was a really big aha moment for me and now I have some work to do and shouvle some data from one db to another one.</p>
+  </main>
+  <footer>
+    <hr>
+    <p>Made by <a target="_blank" href="https://www.devbert.de">Andreas Treubert ↗</a></p>
+  </footer>
+</body>
+
+</html>
