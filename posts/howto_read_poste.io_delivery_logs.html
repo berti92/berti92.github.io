@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>berti92 brain dump</title>
+  <link rel="stylesheet" href="/assets/css/mvp.css">
+  <script async defer data-website-id="a1936807-662b-4f32-9775-4fa0ed7c797c"
+    src="https://umami.devbert.de/jquery-helper.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <h1>Bertis brain dump</h1>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a target="_blank" href="https://github.com/berti92">GitHub ↗</a></li>
+        <li><a target="_blank" href="https://mastodon.social/@DevBird">Mastodon ↗</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1>How to read delivery logs in poste.io (free version / selfhosted)</h1>
+    <small>2025-02-14 18:11 CEST</small>
+    <p>Recently one of my customers had an issue with emails not being delivered to office365 from the selfhosted <br>poste.io server - free version, of course ...</p>
+    <p>Go into your docker container of your poste.io</p>
+    <code>
+    docker exec -ti mailserver bash
+    </code>
+    <p>Go into the directory which includes the delivery logs:</p>
+    <code>
+    cd /var/log/delivery
+    </code>
+    <p>In this directory you'll find for each day a delivery log. If you want to check the log for today (2025-02-13), then execute the following command:</p>
+    <code>
+    cat 2025-02-13-total
+    </code>
+    <p>Example output of a log entry / sent mail:</p>
+    <code>
+    2025-02-13T16:10:03.306Z [21FEB981-9069-494C-BEE2-403546F379C0.1] 11.22.33.44:33270%some-dns.name
+    (monitor@email-address.org) <monitor@email-address.org> -> <receiver@email-address.org> -
+            [][<21FEB981-9069-494C-BEE2-403546F379C0.1@mail.server.com>] 250 Message Queued
+                (21FEB981-9069-494C-BEE2-403546F379C0.1)
+    </code>
+    <p>I changed the ips, dns names and mail addresses, of course. As first indicator you'll find the message of
+    your server "250 Message Queued", which means your mailserver received the mail and will try to send it
+    later.</p>
+    <p>From the entry you'll receive an ID for the email in this case <code>21FEB981-9069-494C-BEE2-403546F379C0.1</code>.
+    With this ID you're now able to get more informations about the delivery.</p>
+    <p>Within the log folder you'll find the folders <code>conn</code>, <code>del</code> and <code>tx</code>.
+    In this folders you must go into subfolders to find your email by the id. The delivery of the email with the
+    id 21FEB... begins with an 2 and after the 2 a 1 follows. So we need to get into <code>conn/2/1/IDOFTHEMAIL</code> and
+    we get the complete connection log from the server to your mailserver.</p>
+    <p>Same as <code>del</code>. Within the log <code>del/2/1/21FEB981-9069-494C-BEE2-403546F379C0.1</code> you'll get the whole delivery
+    information from your mailserver to the receiving mailserver.</p>
+    <p>Same as <code>tx</code>. Within the log <code>tx/2/1/21FEB981-9069-494C-BEE2-403546F379C0.1</code> you'll get additional log
+    informations for the email.</p>
+    <p>I hope this helps you. I searched quite a while to find this information.</p>
+  </main>
+  <footer>
+    <hr>
+    <p>Made by <a target="_blank" href="https://www.devbert.de">Andreas Treubert ↗</a></p>
+  </footer>
+</body>
+
+</html>
