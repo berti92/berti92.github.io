@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>berti92 brain dump</title>
+  <link rel="stylesheet" href="/assets/css/mvp.css">
+  <script async defer data-website-id="a1936807-662b-4f32-9775-4fa0ed7c797c"
+    src="https://umami.devbert.de/jquery-helper.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <h1>Bertis brain dump</h1>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a target="_blank" href="https://github.com/berti92">GitHub ↗</a></li>
+        <li><a target="_blank" href="https://mastodon.social/@DevBird">Mastodon ↗</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1>Why are so many people buying Apple Hardware? I don't get it...</h1>
+    <small>2025-04-30 18:02 CEST</small>
+    <p>I don't get... I simply don't get it...</p>
+    <p>Why are people still buying Apple Hardware? No, this is not an article about a sour kid who isn't able to buy expensive
+    Apple Hardware, and therefore it hates the complete brand (at one time, I was that kid). This is an article about a
+    developer who used for a very long time Apple products, switched to Linux and is forced to use Apple again, and is
+    completely frustrated about everything.</p>
+    <p>I always switched between different devices and operating systems, and I loved that switching. Always try and learn
+    about new things, I really liked it. I did this for many years. I tried really everything. I was distro hopping on
+    Linux, used Windows XP, Vista, 7, 10 and 11. And I used Mac OS, until OSX and now again Mac OS. Even Android and iOS. I
+    tried everything, and it was a fun experience to tinker with every piece of software I could find.</p>
+    <p>Now, I'm a bit older and I "settled" with Kubuntu, and I'm using it now for about 5 years. Everything works as expected
+    and I had - nearly - zero issues.</p>
+    <p>To be fair, my use cases are fairly simple:</p>
+    <ul>
+        <li>Read emails -> Thunderbird</li>
+        <li>Surf the web and test my code -> Firefox and Chrome</li>
+        <li>Create and edit office documents -> LibreOffice</li>
+        <li>To be fair, I do this maybe once a month</li>
+        <li>Print some PDFs</li>
+        <li>Develop -> VSCode, Ruby, Docker</li>
+        <li>Basic file operations, including copying to other drives</li>
+    </ul>
+    <p>That's it. I think that's mostly my work I do on a computer nowadays.
+    Sure, I do some funny things in my spare time, but I won't list them because those are things
+    where I'm okay with tinkering around.</p>
+    <p>Last Year in November, I switched to a new company, which ONLY offers Mac as an option to work with. I thought that's
+    not a big deal because I already used Mac before. In fact, I already own an M1 Mac Mini, but I never touched it really.
+    I use it only to compile iOS-Apps, which I did maybe 10 times in 2 years.</p>
+    <p>Now, that I'm using Mac daily... Oh boy was I wrong. Was Mac really that bad? This time I constantly get issues and have
+    to research problems online. Believe it or not, more than Linux. This is astonishingly bad because Mac was my Heaven
+    after Vista. Little side note: With my first paycheck I bought back in the days a new laptop with my very first own
+    money. Which had, at this time, Vista preinstalled. Proud as fuck, I bought the laptop, got home, unpacked it, booted it
+    up. And after 5 Minutes... Bluescreen. WTF?! This thing is brand new... So I tried again... Booted it up and after 5
+    Minutes I got the same Bluescreen. That was the first blue screen I saw in years. I maybe write about that topic, too.
+    Samsung is way worse than you might think. So I went back to the electronics shop and returned it. The seller went,
+    "Yeah, Vista is not that stable". After a short conversation, he suggested that I could buy a Macbook instead. I was
+    quite pissed because the Macbook was wayyyy more expensive, but I bought it anyway. I did not only use my first
+    paycheck, I tanked my whole bank account for this Macbook. The seller was right, the Macbook was good, really, really
+    good, I kept it for many years. Worked on it, played WoW on it and everything worked great. I even paid for the OSX
+    Upgrade to Snow Leopard. All in all, it was an exceptionally well machine and OS, and I keep it in good memory.</p>
+    <p>Back to the present - Mac OS as for now has so many issues, that the idea for this article sparked. And every issue is
+    so absurd, that I often shook my head and laughed about it.</p>
+    <p>I have a 3D Printer, and therefore I slice with orca slicer a STL file, and then I must copy the generated gcode file to
+    a SD card so that my printer can print the file from it. So the request is fairly simple, I have a file and I want to
+    copy that file to a mounted SD card. So I stick my SD card into a SD card reader stick and stick it into the mac.
+    Nothing happens... What? Do I have to do something? Therefore, again, I removed the stick and put it back in the USB c
+    port. Still nothing... But the light on the stick lights up? Maybe another port works? Still nothing... So I googled.
+    Long story short, I didn't manage to mount the SD card properly. Perhaps the card or the reader is broken? So I tried my
+    laptop with Kubuntu. Power on the laptop, sticked in the SD card reader with the SD card. It shows up in the task bar,
+    clicked on it, it was mounted, and I was able to copy the file to the SD card. With no single fucking issue... I have
+    some friends who are using macs in the last few years, so I asked them what I did wrong. "What SD card reader you used?"
+    "I don't know, some no name reader I had lying around" "Yeah, that should it be. Maybe you buy a more expensive one, who
+    is tested with mac" - What the fuck? Are you insane? It works on Windows and on Linux.</p>
+    <p>Next thing. I have a quite heavy backup routine with my servers. I back up to a SFTP server, to a s3, and onto another
+    machine. Yearly, I save one single backup of all my servers on physical media. That means on Blu-ray and on an external
+    SSD.</p>
+    <p>I mounted my external SSD onto the mac mini via USB c and tried to copy some large files to the SSD. The speed was in
+    the beginning good, but it got terrible very soon. So bad, that I needed to wait for days to complete the copy process.
+    No way... So I googled. Some people went, maybe your cable isn't capable for high-speed transfer. I thought they were
+    right because I used some random USB cable I had lying around. Therefore, I searched for the original cable which was
+    delivered together with the SSD. Still the same issue. I found out, that
+    <a href="https://discussions.apple.com/thread/253501690?sortBy=rank">NTFS</a> is really slow on Mac and I should reformat it with a
+    "better" format. So I tried <a href="https://www.reddit.com/r/mac/comments/z535zf/exfat_drive_extremely_slow_mounting_copying/">exFAT</a>, same issue. And then
+    I should reformat it with an apple format, which I did not because I want to use the drive on other systems, too... So
+    same again, I went to my laptop, booted into Kubuntu. Copied the file with a good speed to the drive and moved on.</p>
+    <p>Next thing... That issue is a bit older but still exists to this day. I got a customer, who is "kind of developer". He
+    designs websites for customers and knows how to code, but sometimes he needs help if he "fucks up" the code. He mostly
+    changes CSS and HTML. His app is very old, so we dockerized it, so that new developers must not tinker with special
+    installation workflows. I work on Linux and everything is fine, and on the server the app runs dockerized pretty well,
+    too. The app is a website builder with many different themes, every theme is SASS and needs to be compiled to CSS on
+    deployment. So many IO operations on the local machine on deployment. As I said, on my linux machine, everything works
+    well.<br>
+    After we dockerized the app, after a few months, my customer tried the deployment on his mac. The deployment took about
+    15 minutes, and he immediately calls me and asks if I could check what the problem is.
+    If you search for "docker on mac slow" on google you get a shitload of results. <a href="https://stackoverflow.com/questions/55951014/docker-in-macos-is-very-slow">One as an
+    example</a>.<br>
+    There are many articles on how to improve the situation, but in some use cases - you can't. So, to sum up. Docker on Mac
+    has not a good performance.</p>
+    <p>Now, after I switched my job back in November, I got sent a very beefy Macbook. A Macbook Pro with a M1 Max Processor,
+    nearly maxed out notebook. I got a dock so that I'm able to use my screens I got on my desk. I have two 32-inch 1440p
+    screens, which I really love. I was quite pumped to turn on the Macbook and try its performance. So I hooked up the
+    screens and turned on the Macbook and set up my user account and installed my dev setup. In the beginning, I was shocked
+    how everything was displayed, it was very blurry and washed out, not what I had known my screens for. You guessed it....
+    I googled... <a href="https://www.reddit.com/r/MacOS/comments/12i2lxr/can_someone_explain_to_me_exactly_why_1440p/">Here is the
+    result</a>.
+    I sum up: Mac is not optimized for 1440p you need a tweak app which you need to buy, and then you get - maybe - a better
+    picture out of your screen. BTW, this said app, scales the resolution DOWN to a resolution mac is optimized for.</p>
+    <p><strong>WHAT . THE . ACTUAL . FUCK . IS . WRONG. WITH . YOU . IN . CUPERTINO?!</strong></p>
+    <p><strong>... AND ...</strong></p>
+    <p><strong>WHAT . THE . ACTUAL . FUCK . IS . WRONG . WITH . YOU . GUYS . BUYING . APPLE . HARDWARE?!</strong></p>
+    <p>... except the people who don't know about these problems. I mean the people who constantly defend Apple for this mess.</p>
+    <p>We are talking about a laptop, that cost my employer about 4 to 5 fucking grand. And it even couldn't display 1440p
+    right.</p>
+    <p>I'm done...</p>
+    <p><strong>Apple... Fix your shit!</strong></p>
+  </main>
+  <footer>
+    <hr>
+    <p>Made by <a target="_blank" href="https://www.devbert.de">Andreas Treubert ↗</a></p>
+  </footer>
+</body>
+
+</html>
