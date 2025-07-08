@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>berti92 brain dump</title>
+  <link rel="stylesheet" href="/assets/css/mvp.css">
+  <script async defer data-website-id="a1936807-662b-4f32-9775-4fa0ed7c797c"
+    src="https://umami.devbert.de/jquery-helper.js"></script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <h1>Bertis brain dump</h1>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a target="_blank" href="https://github.com/berti92">GitHub ↗</a></li>
+        <li><a target="_blank" href="https://mastodon.social/@DevBird">Mastodon ↗</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <h1>My Love letter to containers</h1>
+    <small>2025-07-08 12:30 CEST</small>
+<p>The first contact with containers I had back in 2014. Some of our customers asked if we were IBM certified - whatever
+this means. My boss lives to 100 percent by the motto "the customer is always right", so immediately he called IBM and
+organized an IBM bootcamp for us...</p>
+
+<p>It was a very interesting day at IBM for us. Maybe I write about the IBM experience because there were a few moments
+where we thought we were in a fewer dream. Back to the bootcamp...</p>
+
+<p>So at that time, "cloud" was the new buzzword. IBM bought SoftLayer which was something like AWS or Azure, and
+integrated it as the product "Bluemix".</p>
+
+<p>We ran many servers and never heard of containers before. Every piece of software on the servers was installed via
+package manager, or we compiled it by ourself. No abstraction at all. And yes, with every OS update or upgrade we were
+like:</p>
+
+![](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExdXpiYnEwNm1xNGI3ZmJsdm40Z3A4bG9sc2tjb2YweGtxZGZnMjY3bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LRVnPYqM8DLag/giphy.gif)
+
+<p>... and therefore no one did the upgrades, or only if we knew about serious bugs... Yes, I shit you not. As a rookie, I
+asked the CTO if we could upgrade the Debian Lenny server. His answer was short: Sure, come in on a weekend and do it,
+but you should make sure that everything works. That Saturday turned into a whole weekend of work for me. Yep, I did
+this only once, and after that, never brought that up ever again.</p>
+
+<p>We started to set up virtual machines for specific applications, which were too big of a hassle to upgrade without an
+abstraction. Keyword GitLab ;)</p>
+
+<p>So here we are; we are sitting in a classroom at IBM, and we are learning what containers are. But... we don't get it. I
+know this conversation still very well. The "teacher" tried to explain to us what the cloud was:</p>
+
+<p>
+"Imagine the cloud as a runtime for your software on the internet."
+I raise my hand.
+"So that means the cloud is a server?"
+"Yes, partly. Your software runs on the server, but you don't have access to it. You access only your software /
+container."
+"Okay, but it still runs on a server?"
+"Yes"
+"Okay, but why should we use containers?"
+"Because you could abstract your application from others."
+"But we already have virtual machines."
+</p>
+
+<p>We all didn't know what the benefit was. We thought this was the next buzzword without a sense. To be fair, the
+"teacher" was only a sales guy from IBM and didn't have a clue either. So we should use a technique for which the
+teacher couldn't point any benefits to us, and we should now have to pay 5 times more for the same performance we got
+from a standard Hetzner server. So we finished this bootcamp and got home and never thought about containers again, but
+now we got a little badge on our website "IBM partner". Nice!</p>
+
+<p>Years went by, and I never thought about containers again. Yes, we read about it daily on the news, and we still thought
+that's only a buzzword and ignored that completely, because of our bootcamp at IBM.</p>
+
+<p>Fast-forward to the middle of 2016. I found an article on HN. Sadly, I don't remember which one it was, but it was an
+article that tried to answer every "old man yelling at cloud" answers, and it gave a brief introduction in containers.</p>
+
+<p>That article explained it quite well and changed everything for me. To break it down in short, it said that containers
+had nearly no overhead. This means your software runs on the same kernel, and for that reason, it uses the same
+resources. So it's in no way or shape comparable to virtual machines because in a virtual machine you need to preserve
+and lock your local resources, and you emulate a lot of shit.<br>
+This simple explanation changed everything, and I got totally into containers. The next few weeks, I tinkered with
+Docker daily. And after four weeks, I containerized every application on my private servers. To this day, I install
+almost every piece of software on my servers in Docker containers, and it's such a breeze.
+</p>
+
+<ul>
+  <li>No more fear of OS upgrades.</li>
+  <li>No more fear if the installation of an app breaks other apps.</li>
+  <li>No more long installation tutorials with many commands to execute.</li>
+  <li>No more development setups that's different from others.</li>
+</ul>
+
+<p>It just works, since 2016 with no issues at all.</p>
+  </main>
+  <footer>
+    <hr>
+    <p>Made by <a target="_blank" href="https://www.devbert.de">Andreas Treubert ↗</a></p>
+  </footer>
+</body>
+
+</html>
